@@ -9,7 +9,6 @@ The hardware must meet certain requirements to run a full node.
 
 ## Settings
  
-```
 ## Start your fullnode or a validator node
 ```bash
 $ git clone https://github.com/jfinchain/node-validator
