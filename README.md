@@ -12,18 +12,14 @@ The hardware must meet certain requirements to run a full node.
 ```
 ## Start your fullnode or a validator node
 ```bash
-$ git clone https://github.com/ThaiFi/thaifi.git
-## Enter the folder thaifi was cloned into
-cd thaifi
-## Write genesis state locally
-$ docker run -it --rm  -v $PWD:/tfi -w /tfi ethereum/client-go --datadir /tfi/node init genesis.json
+$ git clone https://github.com/jfinchain/node-validator
+## Enter the folder node-validator was cloned into
+cd node-validator
 ## generate  password
 $ echo "[Your Password]" > password.txt
 ## create new account
-$ docker run -it --rm -v $PWD:/tfi -w /tfi ethereum/client-go --datadir /tfi/node --password password.txt account new
+$ docker run -it --rm -v $PWD/keystore:/datadir/keystore -v $PWD//password.txt:/datadir/password.txt domecloud/jfin-node:latest geth  --datadir /datadir --password /datadir/password.txt account new
 ## Start your fullnode
-$ docker run -itd --restart=always -p 30003:30333 --name tfi-node -v $PWD:/tfi -w /tfi ethereum/client-go \
---datadir /tfi/node --networkid 17 -cache 4096 --port 30333 --mine --unlock [account] --password password.txt \
---syncmode=full --gcmode=archive --nousb
+$ docker compose up -d 
 
 ```
