@@ -1,0 +1,36 @@
+version: "3"
+services:
+  rpc:
+    image: domecloud/jfin-node:latest
+    command:
+      - "geth"
+      - "--datadir=/datadir"
+      - "--genesis=/datadir/genesis.json"
+      - "--bootnodes=enode://7f2060647bb6b3598cde7c409fc433a1d5f4051b4887fdbf50cccc0fd66c66b1ed5479d8e74afe81451dfb58a82a47b36b6b144e636b548224d58029417bef21@65.108.14.187:30303,enode://d1438b13c5e2d7299a648cbbc720025376b997a4af277633d96724d4273c54ca739290efc13e2c4454518d5d048839075575e4e49d554984a802acf7c949196e@65.108.0.235:30303,enode://53b04c91be252104e5efb98e73cc9b067b0c47cb89fae15a6a0370e6d320ec9ad1670afdc00bb0fd01a79f7ef1191ba1e42cfd5c39425298a05e9091a948b9bf@65.108.100.176:30303"
+      - "--networkid=3501"
+      - "--http"
+      - "--http.addr=0.0.0.0"
+      - "--http.api=debug,eth,net,personal,txpool,web3"
+      - "--http.port=8545"
+      - "--http.corsdomain=*"
+      - "--http.vhosts=*"
+      - "--ws"
+      - "--ws.addr=0.0.0.0"
+      - "--ws.api=debug,eth,net,personal,txpool,web3"
+      - "--ws.port=8546"
+      - "--ws.origins=*"
+      - "--syncmode=full"
+#      - "--gcmode=archive"
+#      - "--miner.gasprice=20000000000"
+#      - "--miner.gaslimit=90000000"
+#      - "--miner.gastarget=90000000"
+      - "--rpc.allow-unprotected-txs"
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "30303:30303"
+    volumes:
+      - "./genesis.json:/datadir/genesis.json"
+      - "./datadir/rpc:/datadir/geth"
+    restart: always
+
