@@ -19,7 +19,6 @@ cd node-validator
 $ echo "[Your Password]" > password.txt
 ## create new account
 $ docker run -it --rm -v $PWD/keystore:/datadir/keystore -v $PWD//password.txt:/datadir/password.txt domecloud/jfin-node:latest geth  --datadir /datadir --password /datadir/password.txt account new
-## Start your fullnode
+## Start your validator node
 $ docker compose up -d 
-
 ```
